@@ -14,7 +14,7 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "private" {
 
   rule {
     apply_server_side_encryption_by_default {
-      sse_algorithm     = "AES256"
+      sse_algorithm = "AES256"
     }
   }
 }
@@ -66,7 +66,7 @@ data "aws_iam_policy_document" "alb_log" {
     actions   = ["s3:PutObject"]
     resources = ["arn:aws:s3:::${aws_s3_bucket.alb_log.id}/*"]
 
-principals {
+    principals {
       identifiers = ["893095117949"]
       type        = "AWS"
     }
