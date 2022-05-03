@@ -29,7 +29,7 @@ resource "aws_iam_policy" "default" {
 # IAMポリシーのアタッチ
 resource "aws_iam_policy_attachment" "example" {
   name       = var.name
-  role       = aws_iam_role.default.name
+  roles      = [aws_iam_role.default.name]
   policy_arn = aws_iam_policy.default.arn
 }
 

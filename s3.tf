@@ -1,5 +1,6 @@
 resource "aws_s3_bucket" "private" {
-  bucket = "private-pragmatic-terraform-2022-04-26"
+  bucket        = "private-pragmatic-terraform-2022-04-26"
+  force_destroy = true
 }
 
 resource "aws_s3_bucket_versioning" "private" {
@@ -28,8 +29,9 @@ resource "aws_s3_bucket_public_access_block" "private" {
 }
 
 resource "aws_s3_bucket" "public" {
-  bucket = "public-pragmatic-terraform-2022-04-26"
-  acl    = "public-read"
+  bucket        = "public-pragmatic-terraform-2022-04-26"
+  acl           = "public-read"
+  force_destroy = true
 }
 
 resource "aws_s3_bucket_cors_configuration" "public" {
@@ -44,7 +46,8 @@ resource "aws_s3_bucket_cors_configuration" "public" {
 }
 
 resource "aws_s3_bucket" "alb_log" {
-  bucket = "alb-log-pragmatic-terraform-2022-04-26"
+  bucket        = "alb-log-pragmatic-terraform-2022-04-26"
+  force_destroy = true
 
   lifecycle_rule {
     enabled = true

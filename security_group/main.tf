@@ -20,11 +20,11 @@ resource "aws_security_group_rule" "ingress_default" {
 }
 
 resource "aws_security_group_rule" "egress_default" {
-  from_port         = var.port
+  from_port         = 0
   protocol          = "-1"
   security_group_id = aws_security_group.default.id
-  cidr_blocks       = var.cider_blocks
-  to_port           = var.port
+  cidr_blocks       = ["0.0.0.0/0"]
+  to_port           = 0
   type              = "egress"
 }
 

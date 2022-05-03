@@ -56,14 +56,14 @@ resource "aws_route_table_association" "public_1" {
 #========================================
 
 resource "aws_subnet" "private_0" {
-  cidr_block              = "10.0.64.0/24"
+  cidr_block              = "10.0.65.0/24"
   vpc_id                  = aws_vpc.example.id
   availability_zone       = "ap-northeast-1a"
   map_public_ip_on_launch = false
 }
 
 resource "aws_subnet" "private_1" {
-  cidr_block              = "10.0.65.0/24"
+  cidr_block              = "10.0.66.0/24"
   vpc_id                  = aws_vpc.example.id
   availability_zone       = "ap-northeast-1c"
   map_public_ip_on_launch = false
@@ -101,14 +101,14 @@ resource "aws_eip" "nat_gateway_1" {
 
 resource "aws_nat_gateway" "nat_gateway_0" {
   allocation_id = aws_eip.nat_gateway_0.id
-  subnet_id     = aws_subnet.private_0.id
+  subnet_id     = aws_subnet.public_0.id
   depends_on    = [aws_internet_gateway.example]
 }
 
 
 resource "aws_nat_gateway" "nat_gateway_1" {
   allocation_id = aws_eip.nat_gateway_1.id
-  subnet_id     = aws_subnet.private_1.id
+  subnet_id     = aws_subnet.public_1.id
   depends_on    = [aws_internet_gateway.example]
 }
 
